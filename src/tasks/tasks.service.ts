@@ -17,6 +17,16 @@ export class TasksService {
   }
 
   /**
+   * getTaskById
+   * returns task by id
+   * @argument id string
+   * @return Task
+   */
+  getTaskById(id: string): Task {
+    return this.tasks.find(task => task.id === id);
+  }
+
+  /**
    * createTasks
    * create new task and it returns a newly created task object to the Controller.
    * @argument title string

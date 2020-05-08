@@ -15,8 +15,10 @@ export class TasksController {
     return this.tasksService.getTasks();
   }
 
-  @Get(':id')
-  show(@Param('id') id: string): Task {}
+  @Get('/:id')
+  show(@Param('id') id: string): Task {
+    return this.tasksService.getTaskById(id);
+  }
 
   // POST /tasks/
   @Post()
