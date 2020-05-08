@@ -44,4 +44,15 @@ export class TasksService {
 
     return task;
   }
+
+  /**
+   * destroyTask
+   * delete a specific task.
+   * @argument id string
+   * @return { OK: true }
+   */
+  destroyTask(id: string) {
+    this.tasks = this.tasks.filter(task => task.id !== id);
+    return { OK: true };
+  }
 }
