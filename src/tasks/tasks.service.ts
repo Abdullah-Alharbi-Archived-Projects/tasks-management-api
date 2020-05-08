@@ -23,7 +23,7 @@ export class TasksService {
    * @argument description string
    * @return Task[]
    */
-  public createTasks(createTaskDTO: CreateTaskDTO): Task {
+  createTasks(createTaskDTO: CreateTaskDTO): Task {
     const task: Task = {
       id: uuidV1(),
       ...createTaskDTO,
