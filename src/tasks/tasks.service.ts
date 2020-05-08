@@ -46,6 +46,22 @@ export class TasksService {
   }
 
   /**
+   * updateTaskStatus
+   * update the task status with:
+   *  - OPEN
+   *  - IN_PROGRESS
+   *  - DONE
+   * @argument id
+   * @argument status
+   * @return Task
+   */
+  updateTaskStatus(id: string, status: string): Task {
+    const task = this.getTaskById(id);
+    task.status = TaskStatus[status];
+    return task;
+  }
+
+  /**
    * destroyTask
    * delete a specific task.
    * @argument id string
