@@ -14,6 +14,7 @@ import { TasksService } from './tasks.service';
 import { Task, TaskStatus } from './tasks.model';
 import { CreateTaskDTO } from './dto/create-task.dto';
 import { TasksFilterDTO } from './dto/get-tasks-filter.dto';
+import { TaskStatusValidationPipe } from './pipes/task-status-validation.pipe';
 
 @Controller('tasks')
 export class TasksController {
@@ -43,7 +44,10 @@ export class TasksController {
 
   // PATCH /tasks/:id/status
   @Patch('/:id/status')
-  update(@Param('id') id: string, @Body('status') status: TaskStatus) {
+  update(
+    @Param('id') id: string,
+    @Body('status', TaskStatusValidationPipe) status: TaskStatus,
+  ) {
     return this.tasksService.updateTaskStatus(id, status);
   }
 
