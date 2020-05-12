@@ -7,6 +7,8 @@ import {
   Delete,
   Patch,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task, TaskStatus } from './tasks.model';
@@ -20,7 +22,7 @@ export class TasksController {
 
   // GET /tasks/
   @Get()
-  index(@Query() tasksFilterDTO: TasksFilterDTO): Task[] {
+  index(@Query(ValidationPipe) tasksFilterDTO: TasksFilterDTO): Task[] {
     return Object.keys(tasksFilterDTO).length
       ? this.tasksService.getTasksWithFilters(tasksFilterDTO)
       : this.tasksService.getTasks();
@@ -34,6 +36,7 @@ export class TasksController {
 
   // POST /tasks/
   @Post()
+  @UsePipes(ValidationPipe)
   store(@Body() createTaskDTO: CreateTaskDTO): Task {
     return this.tasksService.createTasks(createTaskDTO);
   }
